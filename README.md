@@ -18,12 +18,14 @@
 #### Learning
 - Rust
 - C/C++ (these two languages are those in which learning curve is never ending)
-- JavaScript + HTML + CSS
 
 #### Want to learn
 - Go
 - Kotlin
 - Elixir
+- Typescript
+- JavaScript + HTML + CSS
+- Lua
 
 ----
 
