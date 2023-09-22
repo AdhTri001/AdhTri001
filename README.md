@@ -1,25 +1,26 @@
-### About me
+## About me
 
-- 🔭 I’m currently working on getting a good college
-- 🌱 I’m currently learning OpenGL and more about Graphics
-- 📫 How to reach me: **AdhTri#3606** (Discord)
+### whoami
+
+👋 I am Adheesh Trivedi!
+
+- 🔭 I’m a student at [IISER, Bhopal](https://www.iiserb.ac.in/)
+- 🌱 I’m currently learning Data Structures and Algorithm
+- 📫 How to reach me: **adheeshtrivedi@gmail.com**
 - 🎂 Birthday: <code>09<sup>th</sup> January, 2004</code>
-- 🇮🇳 My nationality is **India**
+- 🛕 My nationality is **India**
 
 ----
 
 ### Languages
 
-#### Knows well
+#### Comfortable with 👉👈
 - Python
 - Java
 - C/C++
 
-#### Learning
+#### Gonna learn
 - Rust
-- C/C++ (these two languages are those in which learning curve is never ending)
-
-#### Want to learn
 - Go
 - Kotlin
 - Elixir
@@ -29,7 +30,7 @@
 
 ----
 
-### Projects I love to do
+### What I love to do
 
 Projects that involves:
 - Mathematics
