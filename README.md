@@ -5,36 +5,56 @@
 👋 I am Adheesh Trivedi!
 
 - 🔭 I’m a student at [IISER, Bhopal](https://www.iiserb.ac.in/)
-- 🌱 I’m currently learning Data Structures and Algorithm
 - 📫 How to reach me: **adheeshtrivedi@gmail.com**
-- 🎂 Birthday: <code>09<sup>th</sup> January, 2004</code>
+- 🎂 Birthday: 09<sup>th</sup> January, 2004
 - 🛕 My nationality is **India**
 
 ----
 
 ### Languages
 
-#### Comfortable with 👉👈
+#### Brothers with 🤙 (Proficient)
 - Python
-- Java
-- C/C++
+- C++
 
-#### Gonna learn
-- Rust
+#### Friends with 🤝 (Exploring)
 - Go
+- Typescript + HTML + CSS + React
+- Dart and Flutter
+
+#### Crush 😳 (Want to explore more)
+- Rust
 - Kotlin
-- Elixir
-- Typescript
-- JavaScript + HTML + CSS
 - Lua
+
+#### That one friend we met online 😔 (Very previously learned)
+- Java
+- QBasic
 
 ----
 
-### What I love to do
+### Currently Working On
 
-Projects that involves:
-- Mathematics
-- GUI development
-- Graphics
+- ✅ Formal Verification using Model Checking
+- 🕸️ Graph theory (Specifically coloring problems)
+- 🤖 Experimenting with AI and ML projects
+- 📝 Writing technical blogs
 
-tends to attract me a lot.
+----
+
+### Hobbies & Interests
+
+- 🎸 Playing guitar and learning music theory
+- 📈 Plotting fun equations on Desmos
+- 🌏 Exploring new cultures and cuisines
+- ⚙️ Getting upto date with tech news
+
+----
+
+### Fun Facts
+
+- 🦸‍♂️ Can recite Pi up to 20 digits (but only when caffeinated)
+- 🦉 Night owl: Most productive after midnight
+- 🧑‍💻 Writes code with dark mode only
+
+----
