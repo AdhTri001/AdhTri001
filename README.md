@@ -7,7 +7,7 @@
 - 🔭 I’m a student at [IISER, Bhopal](https://www.iiserb.ac.in/)
 - 📫 How to reach me: **adheeshtrivedi@gmail.com**
 - 🎂 Birthday: 09<sup>th</sup> January, 2004
-- 🛕 My nationality is **India**
+- 🛕 My nationality is **Indian**
 
 ----
 
