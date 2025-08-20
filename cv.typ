@@ -108,7 +108,7 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
     - Explored graph coloring & exam scheduling formulations; studied reductions related to P vs NP.
     - Read about #smallcaps[VC Dimension] and its efficient algorithms.
     - Investigated treewidth; applied tree decompositions to dynamic programming on hard problems.
-    - Studied about; #smallcaps[Parameterized Complexity], #smallcaps[Exponential Time Hypothesis].
+    - Studied  #smallcaps[Parameterized Complexity] and the #smallcaps[Exponential Time Hypothesis].
     - Working on different sorts of graph coloring algorithms, such as #smallcaps[Robust Coloring].
   ],
 )
@@ -118,7 +118,7 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   organization: "Mentor: Dr. Prafullkumar Tale",
   date: "Jan 2024 – Apr 2024",
   details: [
-    - Read the foundational text #emph[A First Look at Graph Theory] (Clark & Holton) with problem solving.
+    - Studied #emph[A First Look at Graph Theory] (Clark & Holton) with problem solving.
     - Reinforced concepts: Graphs & their types, connectivity, traversals, matching problem,
       planarity.
   ],
@@ -132,10 +132,10 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   organization: "Vivek Kumar, Rahul Jana, Ayushman Shaha, Dr. Prafullkumar Tale",
   date: "Oct 2024 – Jan 2025",
   details: [
-    - We realised that our college has been making exam schedules with over 14,000
-      students and course registration entries. This required large amount of manual work.
-    - We developed an engine that assigns exams to time slots & halls minimizing same-day conflicts ($<=$24h) using graph coloring + randomized optimization heuristics.
-    - It supports multi-hall allocation when enrollment exceeds single capacity; leverages NetworkX for constraint modeling.
+    - Discovered that exam schedules for 14,000+ students and course registrations were being created manually,
+      requiring significant effort.
+    - Developed an engine that assigns exams to time slots & halls minimizing same-day conflicts ($<=$24h) using graph coloring + randomized optimization heuristics.
+    - Supports multi-hall allocation when enrollment exceeds single capacity; leverages NetworkX for constraint modeling.
   ],
 )
 
@@ -173,8 +173,10 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   organization: "Mentor: Dr. Arpit Sharma",
   date: "Dec 2024 – Present",
   details: [
-  - Developing high-performance converters between action-labeled models (#link("https://cadp.inria.fr/")[CADP]) and (#link("https://www.mcrl2.org/")[mCRL2]) and state-labeled models (#link("https://www.prismmodelchecker.org/")[PRISM]) / (#link("https://www.stormchecker.org/")[Storm]) to enable cross-ecosystem model checking.
-  - Emphasis on parser design, memory-efficient graph transformations, semantic preservation, and interoperability testing using #link("http://nusmv.fbk.eu/")[NuSMV].
+  - Developing high-performance converters between action-labeled models (#link("https://cadp.inria.fr/")[CADP])
+    and (#link("https://www.mcrl2.org/")[mCRL2]) and state-labeled models (#link("https://www.prismmodelchecker.org/")[PRISM]) / (#link("https://www.stormchecker.org/")[Storm]) to enable cross-ecosystem model checking.
+  - Emphasis on parser design, memory-efficient graph transformations, semantic preservation,
+    and inter-operability testing using #link("http://nusmv.fbk.eu/")[NuSMV].
   ],
 )
 
@@ -205,7 +207,7 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   organization: "IISER Bhopal × IIIT Bhopal",
   date: "Jan 2024 – Apr 2024",
   details: [
-    - Co-organized 35-hour national hackathon; coordinated with faculty & industry experts for problem design & judging.
+    - Co-organized a 35-hour national hackathon; collaborated with faculty and industry experts on problem design and judging.
   ],
 )
 
@@ -250,11 +252,10 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
 // Interests (compact)
 = Additional Interests
 #interest-line((
-  "Music",
-  "Guitar",
+  "Music (Guitar)",
   "Competitive Programming",
-  "Typing",
-  "Plotting stuff on Desmos"
+  "Speed Typing",
+  "Mathematical Visualization (Desmos)"
 ))
 
 // Publications section can be added if bibliography entries are available.
