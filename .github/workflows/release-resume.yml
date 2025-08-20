@@ -1,73 +1,128 @@
-name: Build and Release Resume
+name: Build and Publish CV PDF
 
 permissions:
   contents: write
 
 on:
   push:
-    tags:
-      - 'v*'
+    paths:
+      - 'cv.typ'
   workflow_dispatch:
+
+env:
+  TAG: cv-latest
 
 jobs:
   build-and-release:
-    name: Build PDF and create Release
+    name: Build CV and publish single Release asset
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
+      - name: Setup Rust (for typst)
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
 
-      - name: Install typst (via cargo)
+      - name: Install typst (official binary)
         run: |
-          # Install typst CLI using cargo. If you prefer a prebuilt binary, replace this step.
-          cargo install --locked typst || true
+          # Download the official Typst Linux binary from the latest release and install it.
+          # This is faster and avoids installing Rust/cargo on the runner.
+          set -e
+          ARCHIVE_URL="https://github.com/typst/typst/releases/latest/download/typst-linux-x86_64.tar.gz"
+          echo "Downloading Typst from $ARCHIVE_URL"
+          curl -fsSL "$ARCHIVE_URL" -o typst.tar.gz
+          tar -xzf typst.tar.gz
+          # Find the extracted executable and install it
+          TYPST_BIN=$(find . -maxdepth 3 -type f -name 'typst' -perm /111 | head -n1)
+          if [ -z "$TYPST_BIN" ]; then
+            TYPST_BIN=$(find . -maxdepth 4 -type f -name 'typst*' -perm /111 | head -n1)
+          fi
+          if [ -z "$TYPST_BIN" ]; then
+            echo "Could not find typst binary in archive" >&2
+            ls -la
+            exit 1
+          fi
+          chmod +x "$TYPST_BIN"
+          sudo mv "$TYPST_BIN" /usr/local/bin/typst
+          typst --version
+        shell: bash
 
       - name: Compile Typst to PDF
         run: |
-          # Ensure output directory exists and compile the .typ to PDF.
-          mkdir -p resume
-          typst compile resume/resume.typ -o resume/resume.pdf
+          typst compile cv.typ -o cv.pdf
         shell: bash
 
-      - name: Prepare release metadata
-        id: meta
+      - name: Remove existing release & tag (if any)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          TAG: ${{ env.TAG }}
         run: |
-          # Try to extract firstname/lastname from the Typst file for a friendly release title.
-          FIRST=$(grep -Po 'firstname:\s*"\K[^\"]+' resume/resume.typ || echo "Resume")
-          LAST=$(grep -Po 'lastname:\s*"\K[^\"]+' resume/resume.typ || echo "")
-          TAG="${GITHUB_REF##*/}"
-          DATE=$(date -u +"%Y-%m-%d %H:%M UTC")
-          RELEASE_NAME="${FIRST} ${LAST} Resume ${TAG}"
-          RELEASE_BODY="Automatically generated PDF compiled from `resume/resume.typ` on ${DATE}. This release contains the compiled resume PDF: `resume/resume.pdf`."
-          echo "release_name=${RELEASE_NAME}" >> $GITHUB_OUTPUT
-          echo "release_body=${RELEASE_BODY}" >> $GITHUB_OUTPUT
+          set -e
+          echo "Checking for existing release with tag $TAG"
+          resp=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/releases/tags/$TAG")
+          # If not found, API returns {"message":"Not Found",...}
+          if [ "$(echo "$resp" | jq -r '.message' 2>/dev/null)" != "Not Found" ]; then
+            release_id=$(echo "$resp" | jq -r '.id')
+            if [ "$release_id" != "null" ]; then
+              echo "Deleting existing release id: $release_id"
+              curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+                "https://api.github.com/repos/$REPO/releases/$release_id"
+            fi
+          else
+            echo "No existing release with tag $TAG"
+          fi
+
+          # Delete git tag ref if exists (ignore failure)
+          echo "Deleting git tag ref refs/tags/$TAG (if exists)"
+          curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$REPO/git/refs/tags/$TAG" || true
         shell: bash
 
-      - name: Create GitHub Release
+      - name: Create release (cv-latest)
         id: create_release
-        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref_name }}
-          release_name: ${{ steps.meta.outputs.release_name }}
-          body: ${{ steps.meta.outputs.release_body }}
-          draft: false
-          prerelease: false
+          REPO: ${{ github.repository }}
+          TAG: ${{ env.TAG }}
+        run: |
+          payload=$(jq -n --arg tag "$TAG" --arg sha "$GITHUB_SHA" '{tag_name:$tag, name: "CV (latest)", body: ("Automated CV build from " + $sha), draft:false, prerelease:false}')
+          create_resp=$(curl -s -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$payload" \
+            "https://api.github.com/repos/$REPO/releases")
+          upload_url=$(echo "$create_resp" | jq -r .upload_url)
+          if [ -z "$upload_url" ] || [ "$upload_url" = "null" ]; then
+            echo "Failed to create release. Response: $create_resp"
+            exit 1
+          fi
+          # Persist upload_url for next step (strip template part when using)
+          echo "$upload_url" > $GITHUB_WORKSPACE/upload_url.txt
+          echo "upload_url=$upload_url" >> $GITHUB_OUTPUT
+        shell: bash
 
-      - name: Upload PDF to Release
-        uses: actions/upload-release-asset@v1
+      - name: Upload cv.pdf to Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: resume/resume.pdf
-          asset_name: resume.pdf
-          asset_content_type: application/pdf
+        run: |
+          upload_url=$(cat $GITHUB_WORKSPACE/upload_url.txt)
+          upload_url="${upload_url%\{*}"
+          echo "Uploading cv.pdf to $upload_url?name=cv.pdf"
+          resp=$(curl -s -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Content-Type: application/pdf" \
+            --data-binary @cv.pdf \
+            "$upload_url?name=cv.pdf")
+          echo "$resp" | jq -r '.browser_download_url'
+        shell: bash
+
+      - name: Print latest-download permalink
+        run: |
+          echo "Latest CV permalink: https://github.com/${{ github.repository }}/releases/latest/download/cv.pdf"
+        shell: bash
