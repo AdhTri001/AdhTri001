@@ -27,29 +27,9 @@ jobs:
           toolchain: stable
           profile: minimal
 
-      - name: Install typst (official binary)
+      - name: Install typst
         run: |
-          # Download the official Typst Linux binary from the latest release and install it.
-          # This is faster and avoids installing Rust/cargo on the runner.
-          set -e
-          ARCHIVE_URL="https://github.com/typst/typst/releases/latest/download/typst-linux-x86_64.tar.gz"
-          echo "Downloading Typst from $ARCHIVE_URL"
-          curl -fsSL "$ARCHIVE_URL" -o typst.tar.gz
-          tar -xzf typst.tar.gz
-          # Find the extracted executable and install it
-          TYPST_BIN=$(find . -maxdepth 3 -type f -name 'typst' -perm /111 | head -n1)
-          if [ -z "$TYPST_BIN" ]; then
-            TYPST_BIN=$(find . -maxdepth 4 -type f -name 'typst*' -perm /111 | head -n1)
-          fi
-          if [ -z "$TYPST_BIN" ]; then
-            echo "Could not find typst binary in archive" >&2
-            ls -la
-            exit 1
-          fi
-          chmod +x "$TYPST_BIN"
-          sudo mv "$TYPST_BIN" /usr/local/bin/typst
-          typst --version
-        shell: bash
+          cargo install --locked typst || true
 
       - name: Compile Typst to PDF
         run: |
