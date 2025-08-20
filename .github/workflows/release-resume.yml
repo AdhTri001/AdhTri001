@@ -1,0 +1,73 @@
+name: Build and Release Resume
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    name: Build PDF and create Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+
+      - name: Install typst (via cargo)
+        run: |
+          # Install typst CLI using cargo. If you prefer a prebuilt binary, replace this step.
+          cargo install --locked typst || true
+
+      - name: Compile Typst to PDF
+        run: |
+          # Ensure output directory exists and compile the .typ to PDF.
+          mkdir -p resume
+          typst compile resume/resume.typ -o resume/resume.pdf
+        shell: bash
+
+      - name: Prepare release metadata
+        id: meta
+        run: |
+          # Try to extract firstname/lastname from the Typst file for a friendly release title.
+          FIRST=$(grep -Po 'firstname:\s*"\K[^\"]+' resume/resume.typ || echo "Resume")
+          LAST=$(grep -Po 'lastname:\s*"\K[^\"]+' resume/resume.typ || echo "")
+          TAG="${GITHUB_REF##*/}"
+          DATE=$(date -u +"%Y-%m-%d %H:%M UTC")
+          RELEASE_NAME="${FIRST} ${LAST} Resume ${TAG}"
+          RELEASE_BODY="Automatically generated PDF compiled from `resume/resume.typ` on ${DATE}. This release contains the compiled resume PDF: `resume/resume.pdf`."
+          echo "release_name=${RELEASE_NAME}" >> $GITHUB_OUTPUT
+          echo "release_body=${RELEASE_BODY}" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ steps.meta.outputs.release_name }}
+          body: ${{ steps.meta.outputs.release_body }}
+          draft: false
+          prerelease: false
+
+      - name: Upload PDF to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: resume/resume.pdf
+          asset_name: resume.pdf
+          asset_content_type: application/pdf
