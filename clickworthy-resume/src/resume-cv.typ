@@ -36,6 +36,23 @@ https://github.com/typst/packages/blob/2da94b0f21174ae8366834332a6e44fd966de4dd/
 
   set page(
     margin: margin,
+    footer: context [
+      #line(
+        length: 100%,
+        stroke: 0.5pt + rgb("#ccc"),
+
+      )
+      #grid(
+        rows: 1fr,
+        columns: (1fr, auto),
+        align(left)[
+          #smallcaps[#datetime.today().display("[month repr:short] [day], [year]")]
+        ],
+        align(right)[
+          #smallcaps[Page #counter(page).display("1")]
+        ]
+      )
+    ],
   )
 
   show link: set text(
@@ -140,11 +157,17 @@ Education section formatting, allowing enumeration of degrees and GPA.
   if courses != () {
     pad(
       top: -.5em,
+      line(
+        stroke: 0.5pt + rgb("#ccc"),
+      )
+    )
+    pad(
+      top: -.5em,
       left: 1em,
+      right: 1em,
       grid(
         columns: (50%,) * 2,
         rows: 1.1em,
-
         ..(courses.slice(0, calc.ceil(courses.len() / 2)).map(
           grid.cell.with(x: 0)
         )),

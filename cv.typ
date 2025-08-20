@@ -1,20 +1,17 @@
 #import "clickworthy-resume/lib.typ": *
+#import "@preview/fontawesome:0.6.0"
 
 // Personal Information
 #let name = "Adheesh Trivedi"
 #let email = "adheeshtrivedi@gmail.com"
-#let github = "github.com/AdhTri001"
-#let linkedin = "linkedin.com/in/AdhTri001"
 #let contacts = (
-  [#link("mailto:" + email)[#email]],
-  [#link("https://" + github)[#github]],
-  [#link("https://" + linkedin)[#linkedin]],
+  link("mailto:" + email)[#fontawesome.fa-envelope() #email],
+  link("https://github.com/AdhTri001")[#fontawesome.fa-github() AdhTri001],
+  link("https://linkedin.com/in/AdhTri001")[#fontawesome.fa-linkedin() AdhTri001],
+  link("https://adhtri001.github.io/AdhTri001")[#fontawesome.fa-link() adhtri001.github.io]
 )
-#let location = "Indian Institute of Science Education and Research (IISER) Bhopal, India"
 
-// Professional Summary
-#let summary = "Fourth-year CSE student who enjoys algorithms, graph theory, parameterized / exact methods, complexity, and model checking.  I enjoy turning clean theoretical ideas it into clear, efficient code. I care about clarity, collaborative exploration, and implementations that mirror the elegance of the underlying mathematics.
-In addition to academics, I enjoy playing music instruments, practicing speed typing, and competitive programming."
+#let location = [4#super("th") year, BS Computer Science & Engineering, IISER Bhopal, India]
 
 // Resume configuration
 #let theme = rgb("#26428b")
@@ -23,7 +20,7 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
 #let lang = "en"
 #let margin = (
   top: 3em,
-  bottom: 3em,
+  bottom: 6em,
   left: 4em,
   right: 4em,
 )
@@ -35,7 +32,6 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   author: name,
   location: location,
   contacts: contacts,
-  summary: summary,
   theme-color: theme,
   font: font,
   font-size: fontSize,
@@ -43,74 +39,83 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   margin: margin,
 )
 
-// ---------------------------------------------------------------------------
-// Tailored CV content for Theoretical Computer Science graduate applications
-
-// Research Interests / Summary Focus (concise – complements top summary block)
-// Import reusable configuration (interest helpers & datasets)
 #import "config.typ": interest-line, latex
 
-= Academic Interests
+// = Academic Interests
 
-#interest-line((
-  "Algorithms",
-  "Graph Theory",
-  "Complexity Theory",
-  "Model Checking & Formal Verification",
-  "Parsing & Domain-Specific Languages",
-  "Low Level Programming",
-  "Machine Learning"
-))
+// #interest-line((
+//   "Algorithms",
+//   "Graph Theory",
+//   "Complexity Theory",
+//   "Model Checking & Formal Verification",
+//   "Parsing & Domain-Specific Languages",
+//   "Low Level Programming",
+//   "Machine Learning"
+// ))
 
-// Education
 = Education
 
 #edu(
   institution: "IISER Bhopal",
-  date: "2022 – 2026*",
+  date: "2022 – 2026",
   location: "Bhopal, India",
   degrees: (
     ("B.S.", "Computer Science & Engineering"),
   ),
-  gpa: "9.08*/10 (3.63/4)",
+  gpa: [9.08 #footnote("Ongoing", numbering: "*")<ongoing>/10 (3.63/4)],
+  extra: interest-line((
+    "O (Outstanding): 10/10",
+    "A: 10/10",
+    "B+: 9/10",
+    "B: 8/10",
+  )),
   courses: (
-    "Linear Algebra",
-    "Multivariable Calculus",
-    "Discrete Mathematics",
-    "Probability & Statistics",
-    "Complex Variables",
-    "Real Analysis",
-    "Applied Optimization",
-    "Introduction to C Programming",
-    "Data Structures & Algorithms",
-    "Signals & Systems",
-    "Theory of Computation",
-    "Principles of Model Checking",
-    "Fundamentals of Database Systems",
-    "Machine Learning",
-    "Computer Vision",
-    "Artificial Intelligence",
-    "Group Theory*",
-    "Cryptography*",
-    "Information Theory & Coding*",
-    "Computer Organization*"
+    [Multivariable Calculus (B+)],
+    [Discrete Mathematics (A)],
+    [Probability & Statistics (A)],
+    [Complex Variables (A)],
+    [Real Analysis (B+)],
+    [Applied Optimization (B+)],
+    [Introduction to C Programming (A)],
+    [Data Structures & Algorithms (B+)],
+    [Signals & Systems (A)],
+    [Theory of Computation (A)],
+    [Principles of Model Checking (A)],
+    [Fundamentals of Database Systems (O)],
+    [Machine Learning (B+)],
+    [Computer Vision (B)],
+    [Artificial Intelligence (B+)],
+    [Group Theory @ongoing],
+    [Modern Cryptography @ongoing],
+    [Information Theory & Coding @ongoing],
+    [Computer Organization @ongoing]
   ),
 )
 
-// Research & Reading Projects
-= Research & Reading Projects
+= Research Projects
 
 #exp(
   title: "Series of Research Projects in Theoretical Computer Science",
   organization: "Mentor: Dr. Prafullkumar Tale",
-  date: "Jan 2025 – Present",
+  date: "July 2025 – Present",
   details: [
-    - Explored graph coloring & exam scheduling formulations; studied reductions related to P vs NP.
-    - Read about #smallcaps[VC Dimension] and its efficient algorithms.
+    - Studing a relaxation of proper coloring in which edges with same color are associated
+      with some cost.
+    - Studied the #smallcaps[Exponential Time Hypothesis], and ETH-Preserving reductions.
     - Investigated treewidth; applied tree decompositions to dynamic programming on hard problems.
-    - Studied  #smallcaps[Parameterized Complexity] and the #smallcaps[Exponential Time Hypothesis].
-    - Working on different sorts of graph coloring algorithms, such as #smallcaps[Robust Coloring].
   ],
+)
+
+#exp(
+  title: "On the feasibility of parameterized algorithms for VC Dimensions",
+  organization: "Mentor: Dr. Prafullkumar Tale",
+  date: "May 2025 – July 2025",
+  details: [
+    - #smallcaps[VC Dimension] of a classification model is related to how complicated it can be, specifically in terms of the model's capacity to fit various datasets.
+    - It helps in understanding the model's ability to generalize to unseen data.
+    - Tested efficient algorithms for computing the #smallcaps[Graph VC Dimension].
+    - Assessed and compared the parameterized algorithms for #smallcaps[Graph VC Dimension].
+  ]
 )
 
 #exp(
@@ -124,8 +129,23 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   ],
 )
 
-// Software / Applied Projects with Theoretical Emphasis
-= Selected Projects
+#exp(
+  title: "Scientific Tool for Bridging Model Checking Ecosystems",
+  organization: "Mentor: Dr. Arpit Sharma, PhD. Shonak Shaha",
+  date: "Dec 2024 – Present",
+  details: [
+  - The Model Checking ecosystem remains fragmented, with various tools and frameworks lacking
+    seamless interoperability specifically between action based and state based model checking.
+  - Developing high-performance converters between action-labeled models (#link("https://cadp.inria.fr/")[CADP])
+    and (#link("https://www.mcrl2.org/")[mCRL2]) and state-labeled models (#link("https://www.prismmodelchecker.org/")[PRISM])
+    / (#link("https://www.stormchecker.org/")[Storm]) to enable cross-ecosystem model checking.
+  - Emphasis on parser design, memory-efficient graph transformations, semantic preservation,
+    and inter-operability testing..
+  ],
+)
+
+
+= Technical Projects
 
 #exp(
   title: "Extensively Customizable Exam Scheduler (Graph Coloring)",
@@ -143,6 +163,8 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   title: "Texture Classification & Face Clustering for Image Search",
   date: "Sep 2024 – Nov 2024",
   details: [
+    - The project aims to address the common challenge of navigating through directories containing a large
+      collection of images, enabling users to efficiently filter and search for images.
     - Pipeline: MTCNN detection → InceptionResNetV1 embeddings → cosine similarity for face grouping.
     - Implemented batching to control GPU memory; evaluated multiple texture descriptors for retrieval precision.
   ],
@@ -152,8 +174,9 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   title: "Bag-of-Words Chatbot (Context-Aware)",
   date: "Oct 2021 – Dec 2021",
   details: [
-    - Built custom intent dataset; sequential NN (TensorFlow) with context retention across turns.
-    - Features: to-do lists, definitions, time-zone queries, note taking; PyQt5 interface.
+    - Built a context-aware chatbot supporting tasks like to-do lists, word definitions, note taking,
+      and time queries across timezones.
+    - Trained a sequential neural network in TensorFlow on a custom dataset tailored to project requirements.
   ],
 )
 
@@ -162,21 +185,8 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   date: "Mar 2021",
   details: [
     - Implemented modules for moderation, games, music playback, jokes & meme generation.
-  ],
-)
-
-// Internships (Dev & Scientific Tooling)
-= Internships
-
-#exp(
-  title: "Scientific Tool Developer Intern",
-  organization: "Mentor: Dr. Arpit Sharma",
-  date: "Dec 2024 – Present",
-  details: [
-  - Developing high-performance converters between action-labeled models (#link("https://cadp.inria.fr/")[CADP])
-    and (#link("https://www.mcrl2.org/")[mCRL2]) and state-labeled models (#link("https://www.prismmodelchecker.org/")[PRISM]) / (#link("https://www.stormchecker.org/")[Storm]) to enable cross-ecosystem model checking.
-  - Emphasis on parser design, memory-efficient graph transformations, semantic preservation,
-    and inter-operability testing using #link("http://nusmv.fbk.eu/")[NuSMV].
+    - The project was written in Python and utilized PostgreSQL database to store every configuration for the bot,
+      which was server and user specific. The bot was designed to be scalable.
   ],
 )
 
@@ -190,15 +200,17 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   ],
 )
 
-// Leadership & Service
+
 = Leadership & Service
+
 #exp(
   title: "Coordinator – Coding Club",
   organization: "IISER Bhopal",
   date: "May 2024 – May 2025",
   details: [
-    - Organized onsite competitive programming contests; facilitated open discussion & tutorial sessions.
-    - Promoted problem-solving culture; mentored peers in algorithmic thinking.
+    - The club aims to foster competitive programming skills and algorithmic thinking among students.
+    - It organizes onsite competitive programming contests; facilitates open discussions & tutorials.
+    - I actively mentor junior members and led workshops on advanced topics.
   ],
 )
 
@@ -207,50 +219,14 @@ In addition to academics, I enjoy playing music instruments, practicing speed ty
   organization: "IISER Bhopal × IIIT Bhopal",
   date: "Jan 2024 – Apr 2024",
   details: [
-    - Co-organized a 35-hour national hackathon; collaborated with faculty and industry experts on problem design and judging.
+    - Prepared questions for online round with over 500 applicants.
+    - Co-organized a 35-hour national hackathon; collaborated with faculty and industry experts on problem design and judging of 12 onsite teams.
   ],
 )
 
-// Technical Skills (clustered for theoretical CS emphasis)
-= Skills
 
-#show "LaTeX" : latex
-
-#skills((
-  (
-    "Theory / Formal",
-    (
-      [Graph Theory],
-      [Model Checking],
-      [Parameterized Algorithms],
-      [Complexity Theory],
-      [Combinatorial Optimization],
-    ),
-  ),
-  (
-    "Algorithms & Tooling",
-    (
-      [Tree Decomposition],
-      [ILP Modeling],
-      [Reinforcement Learning],
-      [NetworkX],
-      [Graph Coloring],
-      [Parsers],
-    ),
-  ),
-  (
-    "Computer Languages",
-    (
-      [Python],
-      [C++],
-      [TypeScript],
-      [LaTeX]
-    ),
-  ),
-))
-
-// Interests (compact)
 = Additional Interests
+
 #interest-line((
   "Music (Guitar)",
   "Competitive Programming",
