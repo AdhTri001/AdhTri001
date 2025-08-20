@@ -8,7 +8,7 @@
   link("mailto:" + email)[#fontawesome.fa-envelope() #email],
   link("https://github.com/AdhTri001")[#fontawesome.fa-github() AdhTri001],
   link("https://linkedin.com/in/AdhTri001")[#fontawesome.fa-linkedin() AdhTri001],
-  link("https://adhtri001.github.io/AdhTri001")[#fontawesome.fa-link() adhtri001.github.io]
+  link("https://adhtri001.github.io/AdhTri001")[#fontawesome.fa-link() adhtri001.github.io],
 )
 
 #let location = [4#super("th") year, BS Computer Science & Engineering, IISER Bhopal, India]
@@ -88,7 +88,7 @@
     [Group Theory @ongoing],
     [Modern Cryptography @ongoing],
     [Information Theory & Coding @ongoing],
-    [Computer Organization @ongoing]
+    [Computer Organization @ongoing],
   ),
 )
 
@@ -111,11 +111,12 @@
   organization: "Mentor: Dr. Prafullkumar Tale",
   date: "May 2025 – July 2025",
   details: [
-    - #smallcaps[VC Dimension] of a classification model is related to how complicated it can be, specifically in terms of the model's capacity to fit various datasets.
-    - It helps in understanding the model's ability to generalize to unseen data.
+    - #smallcaps[VC Dimension] of a classification model is related to how complicated it can be,
+      specifically in terms of the model's capacity to fit various datasets.
+      Precisely, model's ability to generalize to unseen data.
     - Tested efficient algorithms for computing the #smallcaps[Graph VC Dimension].
     - Assessed and compared the parameterized algorithms for #smallcaps[Graph VC Dimension].
-  ]
+  ],
 )
 
 #exp(
@@ -134,13 +135,14 @@
   organization: "Mentor: Dr. Arpit Sharma, PhD. Shonak Shaha",
   date: "Dec 2024 – Present",
   details: [
-  - The Model Checking ecosystem remains fragmented, with various tools and frameworks lacking
-    seamless interoperability specifically between action based and state based model checking.
-  - Developing high-performance converters between action-labeled models (#link("https://cadp.inria.fr/")[CADP])
-    and (#link("https://www.mcrl2.org/")[mCRL2]) and state-labeled models (#link("https://www.prismmodelchecker.org/")[PRISM])
-    / (#link("https://www.stormchecker.org/")[Storm]) to enable cross-ecosystem model checking.
-  - Emphasis on parser design, memory-efficient graph transformations, semantic preservation,
-    and inter-operability testing..
+    - The Model Checking ecosystem remains fragmented, with various tools and frameworks lacking
+      seamless interoperability specifically between action based and state based model checking.
+    - Developing high-performance converters between action-labeled models (#link("https://cadp.inria.fr/")[CADP])
+      and (#link("https://www.mcrl2.org/")[mCRL2]) and state-labeled models
+      (#link("https://www.prismmodelchecker.org/")[PRISM]) / (#link("https://www.stormchecker.org/")[Storm])
+      to enable cross-ecosystem model checking.
+    - Emphasis on parser design, memory-efficient graph transformations, semantic preservation,
+      and inter-operability testing..
   ],
 )
 
@@ -154,7 +156,8 @@
   details: [
     - Discovered that exam schedules for 14,000+ students and course registrations were being created manually,
       requiring significant effort.
-    - Developed an engine that assigns exams to time slots & halls minimizing same-day conflicts ($<=$24h) using graph coloring + randomized optimization heuristics.
+    - Developed an engine that assigns exams to time slots & halls minimizing same-day conflicts ($<=$24h) using
+      graph coloring + randomized optimization heuristics.
     - Supports multi-hall allocation when enrollment exceeds single capacity; leverages NetworkX for constraint modeling.
   ],
 )
@@ -195,8 +198,10 @@
   organization: "Mentor: Prof. Varadharajan Srinivasan",
   date: "Feb 2024 – Aug 2024",
   details: [
-  - Led integration of scientific engines (#link("https://octopus-code.org/")[Octopus], #link("https://gpaw.readthedocs.io/")[GPAW], #link("https://www.nwchem-sw.org/")[NWChem]) within a Python toolkit for photo-induced phenomena simulations.
-  - Automated submission workflows and job orchestration on national HPC clusters (PARAM-Ganga / PARAM-Kamrupa).
+    - Led integration of scientific engines (#link("https://octopus-code.org/")[Octopus],
+      #link("https://gpaw.readthedocs.io/")[GPAW], #link("https://www.nwchem-sw.org/")[NWChem])
+      within a Python toolkit for photo-induced phenomena simulations.
+    - Automated submission workflows and job orchestration on national HPC clusters (PARAM-Ganga / PARAM-Kamrupa).
   ],
 )
 
@@ -220,7 +225,8 @@
   date: "Jan 2024 – Apr 2024",
   details: [
     - Prepared questions for online round with over 500 applicants.
-    - Co-organized a 35-hour national hackathon; collaborated with faculty and industry experts on problem design and judging of 12 onsite teams.
+    - Co-organized a 35-hour national hackathon; collaborated with faculty and industry experts on
+      problem design and judging of 12 onsite teams.
   ],
 )
 
@@ -231,7 +237,19 @@
   "Music (Guitar)",
   "Competitive Programming",
   "Speed Typing",
-  "Mathematical Visualization (Desmos)"
+  "Mathematical Visualization (Desmos)",
 ))
 
 // Publications section can be added if bibliography entries are available.
+
+
+// END
+
+#v(1fr, weak: true)
+
+#align(right)[
+  #text(
+    size: 9pt,
+    emph[This document is written using #link("https://typst.app")[Typst]]
+  )
+]
