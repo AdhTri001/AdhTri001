@@ -95,7 +95,7 @@
 = Research Projects
 
 #exp(
-  title: "Series of Research Projects in Theoretical Computer Science",
+  title: "On Robust Coloring of Graphs and ETH",
   organization: "Mentor: Dr. Prafullkumar Tale",
   date: "July 2025 – Present",
   details: [
@@ -103,6 +103,22 @@
       with some cost.
     - Studied the #smallcaps[Exponential Time Hypothesis], and ETH-Preserving reductions.
     - Investigated treewidth; applied tree decompositions to dynamic programming on hard problems.
+  ],
+)
+
+#exp(
+  title: "Scientific Tool for Bridging Model Checking Ecosystems",
+  organization: "Mentor: Dr. Arpit Sharma, PhD. Shonak Shaha",
+  date: "Dec 2024 – Present",
+  details: [
+    - The Model Checking ecosystem remains fragmented, with various tools and frameworks lacking
+      seamless interoperability specifically between action based and state based model checking.
+    - Developing high-performance converters between action-labeled models (#link("https://cadp.inria.fr/")[CADP])
+      and (#link("https://www.mcrl2.org/")[mCRL2]) and state-labeled models
+      (#link("https://www.prismmodelchecker.org/")[PRISM]) / (#link("https://www.stormchecker.org/")[Storm])
+      to enable cross-ecosystem model checking.
+    - Emphasis on parser design, memory-efficient graph transformations, semantic preservation,
+      and inter-operability testing..
   ],
 )
 
@@ -127,22 +143,6 @@
     - Studied #emph[A First Look at Graph Theory] (Clark & Holton) with problem solving.
     - Reinforced concepts: Graphs & their types, connectivity, traversals, matching problem,
       planarity.
-  ],
-)
-
-#exp(
-  title: "Scientific Tool for Bridging Model Checking Ecosystems",
-  organization: "Mentor: Dr. Arpit Sharma, PhD. Shonak Shaha",
-  date: "Dec 2024 – Present",
-  details: [
-    - The Model Checking ecosystem remains fragmented, with various tools and frameworks lacking
-      seamless interoperability specifically between action based and state based model checking.
-    - Developing high-performance converters between action-labeled models (#link("https://cadp.inria.fr/")[CADP])
-      and (#link("https://www.mcrl2.org/")[mCRL2]) and state-labeled models
-      (#link("https://www.prismmodelchecker.org/")[PRISM]) / (#link("https://www.stormchecker.org/")[Storm])
-      to enable cross-ecosystem model checking.
-    - Emphasis on parser design, memory-efficient graph transformations, semantic preservation,
-      and inter-operability testing..
   ],
 )
 
@@ -250,6 +250,7 @@
 #align(right)[
   #text(
     size: 9pt,
+    stroke: .01pt,
     emph[This document is written using #link("https://typst.app")[Typst]]
   )
 ]
