@@ -8,7 +8,7 @@
   link("mailto:" + email)[#fontawesome.fa-envelope() #email],
   link("https://github.com/AdhTri001")[#fontawesome.fa-github() AdhTri001],
   link("https://linkedin.com/in/AdhTri001")[#fontawesome.fa-linkedin() AdhTri001],
-  link("https://adhtri001.github.io/AdhTri001")[#fontawesome.fa-link() adhtri001.github.io],
+  link("https://adhtri001.github.io")[#fontawesome.fa-link() adhtri001.github.io],
 )
 
 #let location = [4#super("th") year, BS Computer Science & Engineering, IISER Bhopal, India]
